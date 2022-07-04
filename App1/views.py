@@ -5,4 +5,13 @@ from django.shortcuts import render
 def base(request):
     return render(request, 'base.html')
 
+def groups(request):
+    return render(request,'group.html')  
+
+def ledgers(request):
+    return render(request,'ledger.html')    
+
+def homes(request):
+    return render(request,'home.html')       
+
     
