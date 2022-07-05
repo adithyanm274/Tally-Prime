@@ -12,6 +12,32 @@ def ledgers(request):
     return render(request,'ledger.html')    
 
 def homes(request):
-    return render(request,'home.html')       
+    return render(request,'home.html')    
+
+
+def voucher(request):
+    return render(request, 'voucher.html')
+
+def vouchpage(request):
+    return render(request, 'vouchpage.html')  
+
+def branch(request):
+    return render(request, 'branch.html')
+
+def currency(request):
+    # obj=CreateCurrency.objects.all()
+    # context={'cur':obj,}
+    return render(request, 'currency.html')         
+
+# def currency_alter(request):
+
+#     return render(request, 'currency_alter.html')
+
+def currency_alter(request,pk):
+    # cur=CreateCurrency.objects.get(id=pk)
+
+    return render(request,'currency_alter.html',{'i':cur})
+    return render(request,'currency_alter.html',{'i':cur})
+
 
     

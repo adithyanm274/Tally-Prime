@@ -7,6 +7,14 @@ urlpatterns = [
     path('home',views.homes,name='home'),
     path('group',views.groups,name='group'),
     path('ledger',views.ledgers,name='ledger'),
+    path('voucher',views.voucher,name='voucher'),
+    path('vouchpage',views.vouchpage,name='vouchpage'),
+    path('currency',views.currency,name='currency'),
+    path('currency_alter/<int:pk>',views.currency_alter,name='currency_alter'),
+    path('branch',views.branch,name='branch'),
+
+
+
 
 
 
