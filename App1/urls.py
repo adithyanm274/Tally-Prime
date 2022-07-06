@@ -10,8 +10,10 @@ urlpatterns = [
     path('voucher',views.voucher,name='voucher'),
     path('vouchpage',views.vouchpage,name='vouchpage'),
     path('currency',views.currency,name='currency'),
-    path('currency_alter/<int:pk>',views.currency_alter,name='currency_alter'),
+    path('currency_alter',views.currency_alter,name='currency_alter'),
     path('branch',views.branch,name='branch'),
+    path('ledgerpages',views.ledgerpages,name='ledgerpages'),
+
 
 
 
