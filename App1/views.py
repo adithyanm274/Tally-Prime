@@ -81,9 +81,8 @@ def crtecompony(request):
                     curncysymbl=curncysymbl,
                     crncyname=crncyname)
         data.save()
-        messages.success(request,"Group added successfully!")
+        messages.success(request,"Company Registered Successfully!")
         return redirect('/')
-
 
 def changecompony(request):
     data=crtcompony.objects.all()

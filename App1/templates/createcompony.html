@@ -89,22 +89,36 @@
     {% block body %}
         {% load static %}
         <style>
+                input,select{
+            width: 100%;
+            border: 2px;
+            background-color: rgba(0, 0, 0, 0.04);
+            border: 2px solid rgb(0, 0, 0,0);
+        }
+        
             .container{
                 display: flex;
                 height:65vh;
                 align-items: center;
                 justify-content: center;
+
             }
         .form1{
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content:flex-end;
-            position: absolute;
-            
+            justify-content: center;
+            position:absolute;
+            width: auto;
+  
         }
         form{
-            padding:30px;
+            padding: 40px;
+            width: 100%;
+            border: 2px solid#ccc;
+            border-radius: 4px;
+            box-sizing:border-box;
+            resize: vertical;
         }
         .close {
             position: absolute;
@@ -115,20 +129,32 @@
             transform: rotate(45deg);
             cursor: pointer;
             text-decoration: none;
-            
         }
         button{
             background-color:rgb(103, 175, 220) ;
             color:white;
-            padding:10px 20px;
+            padding:10px 120px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 15px;
+            /* box-shadow: 0 9px; */
+        }
+        button:hover{
+            background-color: aqua;
+
+        }
+        button:active{
+            background-color: blueviolet;
+            box-shadow: 0 5px #666;
+            transform: translate(4px);
         }
     </style>
     <div class="container">
         
         <div class="form1"style=" background-color:rgba(0,0,0,0.3);">
             <a href="javascript:history.go(-1);" class="close">+</a>
-            <h5 style="background-color:rgb(103, 175, 220) ; color:white; text-align: center; padding: 5px 5px; width:100%;">Company Creation</h5>
-            <form method="post" action="{% url 'createcompony' %}">
+            <h5 style="background-color:rgb(103, 175, 220) ; color:white; text-align: center; padding: 5px 0; width:100%;">Company Creation</h5>
+            <form method="post" action="{% url 'crtecompony' %}">
                 {% csrf_token %}
 
     <!-- <div class="container">
@@ -145,9 +171,7 @@
             <div><p>Address</Address></p>
             <input type="text" name="address"></div>
             <div><p>State</p>
-            <input type="text" name="state"></div>
-
-            <!-- <select  id="primary" name="state">
+            <select  id="primary" name="state">
                 <option value="primary">Not Applicable</option>
                 <option value="primary">Andaman & Nicobar Islands</option>
                 <option value="primary">Andhra Pradesh</option>
@@ -181,10 +205,11 @@
                 <option value="primary">Sikkim</option>
                 <option value="primary">Tamil Nadu</option>
                 <option value="primary">Telangana</option>
-            </select> -->
+                
+
+            </select></div>
             <div><p>Country</p>
-            <input type="text" name="country"></div>
-          <!-- <select  id="country" name="country">
+            <select  id="country" name="country">
                 <option value="Countryt">Not Applicable</option>
                 <option value="Country">Bangladesh</option>
                 <option value="Country">Bhutan</option>
@@ -216,8 +241,9 @@
                 <option value="Country">Uganda</option>
                 <option value="Country">UK</option>
                 <option value="Country">USA</option>
-                <option value="Country">Zambia</option>             
-            </select> -->
+                <option value="Country">Zambia</option>
+                
+            </select></div>
             <div><p>Postal Code</p>
             <input type="text" name="pincode"></div>
             <div><p>Telephone</p>
@@ -237,48 +263,48 @@
             <hr>
             <div><p>Base Currency Symbol</p>
             <select id="sub-ledger" name="curncysymbl">
-                <option value="No">US$</option> 
-                <option value="Yes">€</option>
-                <option value="Yes">£</option>
-                <option value="Yes">$</option>
-                <option value="Yes">¢</option>
-                <option value="Yes">₼</option>
-                <option value="Yes">₹</option>
-                <option value="Yes">Br</option>
-                <option value="Yes">BZ$</option>
-                <option value="Yes">$b</option>
-                <option value="Yes">KM</option>
+                <option value="No">TK</option> 
+                <option value="Yes">Nu</option>
                 <option value="Yes">P</option>
-                <option value="Yes">лв</option>
-                <option value="Yes">R$</option>
-                <option value="Yes">៛</option>
-                <option value="Yes">¥</option>
-                <option value="Yes">₡</option>
-                <option value="Yes">kn</option>
-                <option value="Yes">₱</option>
-                <option value="Yes">Kč</option>
+                <option value="Yes">EGP</option>
+                <option value="Yes">GH₵</option>
+                <option value="Yes">HKD</option>
+                <option value="Yes">₹</option>
+                <option value="Yes">Rp</option>
+                <option value="Yes">KSh</option>
+                <option value="Yes">BHD</option>
+                <option value="Yes">KWD</option>
+                <option value="Yes">$</option>
+                <option value="Yes">Nu</option>
+                <option value="Yes">Nu</option>
+                <option value="Yes">Nu</option>
+                <option value="Yes">Nu</option>
+                <option value="Yes">Nu</option>
+                <option value="Yes">Nu</option>
+                <option value="Yes">Nu</option>
+                <option value="Yes">Nu</option>
                  
             </select></div>
             <div><p>Formal name</p>
             <select name="crncyname" id="sub-ledger" >
-                <option value="No">Albania Lek</option> 
-                <option value="Yes">Afghanistan Afghani</option>
-                <option value="Yes">Argentina Peso</option>
-                <option value="Yes">Aruba Guilder</option>
-                <option value="Yes">Australia Dollar</option>
-                <option value="Yes">Azerbaijan Manat</option>
+                <option value="No">Bangladeshi taka</option> 
+                <option value="Yes">Buhtanese Ngultrum</option>
+                <option value="Yes">Botswana Pula</option>
+                <option value="Yes">Egyptian Pound</option>
+                <option value="Yes">Ghanaian cedi</option>
+                <option value="Yes">Hong Kong Doller</option>
                 <option value="Yes">INR</option>
                 <option value="Yes">Indonasian Rupiah</option>
                 <option value="Yes">Kenyan Shiling</option>
                 <option value="Yes">Behraini Dinar</option>
                 <option value="Yes">Kuwaiti Dinar</option>
                 <option value="Yes">Doller</option>
-                <option value="Yes">Bolivia Bolíviano</option>
-                <option value="Yes">Botswana Pula	</option>
+                <option value="Yes">Hong Kong Doller</option>
+                <option value="Yes">Hong Kong Doller</option>
                 <option value="Yes">Hong Kong Doller</option>
 
                  
-            </select></div>
+            </select><br></div>
             
                
             <br>
