@@ -150,7 +150,7 @@ text-decoration: none;
 </head>
 <body>
 <div style="height: 100vh;">
-    <h6 style="color: rgb(0, 0, 65); background-color: rgb(142, 211, 250);padding: 2px; height:3%;">Alter</h6>
+    <h6 style="color: rgb(0, 0, 65); background-color: rgb(142, 211, 250);padding: 2px; height:3%;">Chart Of Accounts</h6>
 <div style=" display:flex; height: 97%;">
 <div style="border-right: .5px solid rgb(218, 218, 218); width:100%;  height: 100%; ">
    
@@ -163,6 +163,8 @@ text-decoration: none;
   </div>
   <div style="width: 50%; text-align: end;">
     <h5 style="color: black; padding:5px;font-size: 16px;">For 1-Apr-22</h5>
+    <a href="load_create_vouchertyp"><h8 style="text-align:left;">Create Voucher</h8></a><br>
+
     <!-- <h5 style="padding:5px;">Friday,1-Apr-22</h5> -->
 
   </div>
@@ -170,30 +172,35 @@ text-decoration: none;
   <hr></hr>
   
   
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Attendance</h5></button></a>
+  <!-- <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Attendance</h5></button></a>
   <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Contra</h5></button></a>
-  <a href="vouchpage"> <button  class="btns_prnt" id="create"><h5>Credit Note</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Debit Note</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Delivery Note</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Job Work In Order</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Job Work Out Order</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Journal</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Material In</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Material Out</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Memorandum</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Payment</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Payroll</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Physical Stock</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Purchase</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Purchase Order</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Receipt</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Receipt Note</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Rejections In</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Rejections Out</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Reversing Journal</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Sales</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Sales Order</h5></button></a>
-  <a href="vouchpage"><button  class="btns_prnt" id="create"><h5>Stock Journal</h5></button></a>
+  <a href="branch"> <button  class="btns_prnt" id="create"><h5>Credit Note</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Debit Note</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Delivery Note</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Job Work In Order</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Job Work Out Order</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Journal</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Material In</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Material Out</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Memorandum</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Payment</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Payroll</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Physical Stock</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Purchase</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Purchase Order</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Receipt</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Receipt Note</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Rejections In</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Rejections Out</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Reversing Journal</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Sales</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Sales Order</h5></button></a>
+  <a href="branch"><button  class="btns_prnt" id="create"><h5>Stock Journal</h5></button></a> -->
+
+  {% for i in vch %}
+  <a href="{% url 'update_voucher' i.id  %}"><button  class="btns_prnt" id="create"><h5>{{ i.voucher_name }}</h5></button></a>
+  <!-- <a href="{% url 'currency_alter' i.id  %}"><button  class="btns_prnt p-3" id="create"><h6>{{ i.symbol }}</h6></button></a> -->
+  {% endfor %}
 
 
 
