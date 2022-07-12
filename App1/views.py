@@ -18,8 +18,6 @@ def base(request):
 def home(request):
     return render(request, 'home.html')
 
-def group(request):
-    return render(request, 'groups.html')
 
 def branch(request):
     return render(request, 'branch.html')
@@ -27,36 +25,74 @@ def branch(request):
 def ledger(request):
     return render(request, 'ledger.html')
 
+#------Change Company Creation--------#
 
-def voucher(request):
-    vch=VoucherModels.objects.all()
-    context={'vch':vch,}
-    return render(request, 'voucher.html',context)
+def changecompony(request):
+    return render(request, 'changecompony.html')
 
-def vouchpage(request):
-    return render(request, 'vouchpage.html')
+def createcompony(request):
+    return render(request, 'createcompony.html')
 
-def currency(request):
-    obj=CreateCurrency.objects.all()
-    context={'cur':obj,}
-    return render(request, 'currency.html',context)
+def crtecompony(request):
+    if request.method=='POST':
+        comname=request.POST['componyname']
+        mailingname=request.POST['mailingname']
+        address=request.POST['address']
+        state=request.POST['state']
+        country=request.POST['country']
+        pincode=request.POST['pincode']
+        telphone=request.POST['telphone']
+        mobile=request.POST['mobile']
+        fax=request.POST['fax']
+        email=request.POST['email']
+        website=request.POST['website']
+        fyearbgn=request.POST['fyearbgn']
+        booksbgn=request.POST['booksbgn']
+        curncysymbl=request.POST['curncysymbl']
+        crncyname=request.POST['crncyname']
+        # items=request.FILES['file']
+        data=crtcompony(componyname=comname,
+                    mailingname=mailingname,
+                    address=address,
+                    state=state,
+                    country=country,
+                    pincode=pincode,
+                    telphone=telphone,
+                    mobile=mobile,
+                    fax=fax,
+                    email=email,
+                    website=website,
+                    fyearbgn=fyearbgn,
+                    booksbgn=booksbgn,
+                    curncysymbl=curncysymbl,
+                    crncyname=crncyname)
+        data.save()
+        messages.success(request,"Company Registered Successfully!")
+        return redirect('/')
 
+def changecompony(request):
+    data=crtcompony.objects.all()
+    return render(request,'changecompony.html',{'data':data})
 
+def selectcompony(request):
+    data=crtcompony.objects.all()
+    return render(request,'selectcompony.html',{'data':data})
 
-# def currency_alter(request):
+#---------Group Creation---------#
 
-#     return render(request, 'currency_alter.html')
+def group(request):
+    # obj1=GroupModel.objects.filter(under ='BankAccount1')
+    # obj=GroupModel.objects.all().filter(under ='curntasts1')
+    return render(request, 'groups.html')
 
-def currency_alter(request,pk):
-    cur=CreateCurrency.objects.get(id=pk)
-    return render(request,'currency_alter.html',{'i':cur})
+def branch(request):
+    context={ 'name':'Branch/Division' }
+    return render(request, 'branch.html',context)
 
-def update_voucher(request,pk):
-    vch=VoucherModels.objects.get(id=pk)
-    return render(request,'update_voucher.html',{'i':vch})
-
-
-
+def load_create_groups(request):
+    # grp = GroupModel.objects.all()
+    # context={'grp':grp}
+    return render(request,'load_create_groups.html')
 
 @csrf_exempt
 def create_group(request):
@@ -94,7 +130,16 @@ def create_group(request):
             'status': 1
         })
 
+#----------currency creation---------#
+        
+def currency(request):
+    obj=CreateCurrency.objects.all()
+    context={'cur':obj,}
+    return render(request, 'currency.html',context)
 
+def currency_alter(request,pk):
+    cur=CreateCurrency.objects.get(id=pk)
+    return render(request,'currency_alter.html',{'i':cur})
 def load_create_currency(request):
     return render(request,'load_create_currency.html')
 
@@ -135,7 +180,7 @@ def create_currency(request):
             decimal_no_in_words=amount_in_words,
         )
         mdl_obj.save()
-        return redirect('load_create_currency')
+        return redirect('currency')
 
 def save_currency_data(request):
     if request.method == 'POST':
@@ -154,9 +199,7 @@ def save_currency_data(request):
             lastvrate = lvr,
             specirate = sr,
             lastvrate2 = lvr2,
-            specirate2 = sr2,
-            
-            
+            specirate2 = sr2,        
            
         )
         
@@ -183,11 +226,22 @@ def update_currency(request,pk):
         return redirect('currency')
     return render(request, 'currency_alter.html',)
 
+#--------Voucher creation--------#
+
+def voucher(request):
+    vch=VoucherModels.objects.all()
+    context={'vch':vch,}
+    return render(request, 'voucher.html',context)
+
+def vouchpage(request):
+    return render(request, 'vouchpage.html')
+
+def update_voucher(request,pk):
+    vch=VoucherModels.objects.get(id=pk)
+    return render(request,'update_voucher.html',{'i':vch})
 
 def load_create_vouchertyp(request):
     return render(request,'load_create_vouchertyp.html')
-
-
 
 def create_voucher(request):
     if request.method == 'POST':
@@ -195,16 +249,16 @@ def create_voucher(request):
         alias = request.POST['alias']
         vtype = request.POST['vtype']
         abbre = request.POST['abbre']
-        activ_vou_typ = request.POST['avtyp']  # bool
+        activ_vou_typ = request.POST['avtyp']  
         meth_vou_num = request.POST['meth_vou_num']
         useadv = request.POST.get('useadvc', False)
         prvtdp = request.POST.get('prvtdp', False)
-        use_effct_date = request.POST['uefftdate']  # bool
-        allow_zero_trans = request.POST['allow_zero_trans']  # bool
-        allow_naration_in_vou = request.POST['allow_naration_in_vou']  # bool
+        use_effct_date = request.POST['uefftdate']  
+        allow_zero_trans = request.POST['allow_zero_trans']  
+        allow_naration_in_vou = request.POST['allow_naration_in_vou']  
         optional = request.POST['optional'] 
-        provide_narr = request.POST['providenr']  # bool
-        print = request.POST['print']  # bool
+        provide_narr = request.POST['providenr']  
+        print = request.POST['print'] 
 
         if VoucherModels.objects.filter(voucher_name=Vname).exists():
                 messages.info(request,'This Name is already taken...!')
@@ -230,10 +284,9 @@ def create_voucher(request):
         )
         mdl.save()
         messages.info(request,'VOUCHER CREATED SUCCESSFULLY')
-        return redirect('load_create_vouchertyp')
+        return redirect('voucher')
 
     return render(request, 'load_create_vouchertyp')
-
 
 def save_voucher(request,pk):
     if request.method=='POST':
