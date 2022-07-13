@@ -32,7 +32,15 @@ urlpatterns = [
 
 #-----Create Group----------#
     path('group',views.group,name='group'),
-    path('load_create_groups',views.load_create_groups,name='group'),
+    path('branch',views.branch,name='branch'),
+    path('load_create_group1',views.load_create_group1,name='load_create_group1'),
+    path('load_create_groups',views.load_create_groups,name="load_create_groups"),
+    path('create_group',views.create_group,name="create_group"),
+    path('update_grp/<int:pk>',views.update_grp,name="update_grp"),
+
+
+
+
 
 
 
