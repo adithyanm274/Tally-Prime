@@ -22,8 +22,6 @@ def home(request):
 def branch(request):
     return render(request, 'branch.html')
 
-def ledger(request):
-    return render(request, 'ledger.html')
 
 #------Change Company Creation--------#
 
@@ -187,16 +185,6 @@ def update_grp(request,pk):
         grp.save()
         return redirect('groups')
     return render(request, 'update_grp.html',)
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -378,5 +366,81 @@ def save_voucher(request,pk):
         vch.save()
         return redirect('voucher')
     return render(request, 'update_voucher.html',)
+
+#-----------Ledger Creation-------------#
+
+
+def ledger(request):
+    led=ledgerModels.objects.all()
+    context={'led':led}
+    return render(request, 'ledger.html',context)
+
+# def create_ledger(request):
+#     return render(request,'ledger_create.html')
+
+def create_ledger1(request):
+    if request.method == 'POST':
+        ledger_name =request.POST['name']
+        alias = request.POST['alias']
+        ledger_type = request.POST['vtype']
+        abbre = request.POST['abbre']
+        activ_vou_typ = request.POST['avtyp']  
+        meth_vou_num = request.POST['meth_vou_num']
+        useadv = request.POST.get('useadvc', False)
+        prvtdp = request.POST.get('prvtdp', False)
+        use_effct_date = request.POST['uefftdate']  
+        allow_zero_trans = request.POST['allow_zero_trans']  
+        allow_naration_in_vou = request.POST['allow_naration_in_vou']  
+        optional = request.POST['optional'] 
+        provide_narr = request.POST['providenr']  
+
+        if ledgerModels.objects.filter(ledger_name=ledger_name).exists():
+                messages.info(request,'This Name is already taken...!')
+                return render(request, 'ledger.html')
+        
+        mdl = ledgerModels(
+
+            ledger_name=ledger_name,
+            alias=alias,
+            voucher_type=ledger_type,
+            abbreviation=abbre,
+            active_this_voucher_type=activ_vou_typ,
+            method_voucher_numbering=meth_vou_num,
+            use_effective_date=use_effct_date,
+            use_adv_conf = useadv,
+            prvnt_duplictes =prvtdp,
+            allow_zero_value_trns=allow_zero_trans,
+            allow_naration_in_voucher=allow_naration_in_vou,
+            make_optional=optional,
+            provide_naration=provide_narr,
+            print_voucher=print,
+
+        )
+        mdl.save()
+        messages.info(request,'LEDGER CREATED SUCCESSFULLY')
+        return redirect('ledger')
+
+    return render(request, 'ledger_create.html') 
+
+def save_ledger(request,pk):
+    if request.method=='POST':
+        vch =VoucherModels.objects.get(id=pk)
+        vch.voucher_name = request.POST.get('nam')
+        vch.alias = request.POST.get('alias')
+        vch.voucher_type = request.POST.get('vtype')
+        vch.abbreviation = request.POST.get('abbre')
+        vch.active_this_voucher_type = request.POST.get('avtyp')
+        vch.method_voucher_numbering = request.POST.get('meth_vou_num')
+        vch.use_effective_date = request.POST.get('uefftdate')
+        vch.allow_zero_value_trns = request.POST.get('allow_zero_trans')
+        vch.make_optional = request.POST.get('optional')
+        vch.allow_naration_in_voucher = request.POST.get('allow_naration_in_vou')
+        vch.provide_naration = request.POST.get('providenr')
+        vch.print_voucher = request.POST.get('print')
+        
+        vch.save()
+        return redirect('voucher')
+    return render(request, 'update_voucher.html',)       
+
 
 

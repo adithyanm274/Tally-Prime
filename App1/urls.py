@@ -7,7 +7,6 @@ urlpatterns = [
     path('',views.base,name='base'),
     path('home',views.home,name='home'),
     path('branch',views.branch,name='branch'),
-    path('ledger',views.ledger,name='ledger'),
 #----change Company------#
     path('changecompony',views.changecompony,name='changecompony'),
     path('createcompony',views.createcompony,name='createcompony'),
@@ -37,6 +36,15 @@ urlpatterns = [
     path('load_create_groups',views.load_create_groups,name="load_create_groups"),
     path('create_group',views.create_group,name="create_group"),
     path('update_grp/<int:pk>',views.update_grp,name="update_grp"),
+
+#-----Create Ledger---------#   
+    path('ledger',views.ledger,name='ledger'),
+    # path('create_ledger',views.create_ledger,name="create_ledger"),
+    path('create_ledger1',views.create_ledger1,name="create_ledger1"),
+
+  
+
+    
 
 
 
