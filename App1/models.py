@@ -88,21 +88,25 @@ class GroupModel(models.Model):
     def __str__(self):
         return self.name
 
-class ledgerModels(models.Model):
+
+
+class LedgerModels(models.Model):
     ledger_name = models.CharField(max_length=225)
     alias = models.CharField(max_length=225)
-    ledger_type = models.CharField(max_length=225)
-    abbreviation = models.CharField(max_length=225)
-    active_this_voucher_type =  models.CharField(max_length=225)
-    method_voucher_numbering = models.CharField(max_length=225)
-    use_adv_conf = models.CharField(max_length=225,blank=True)
-    prvnt_duplictes = models.CharField(max_length=225,default="Null",blank=True)
-    use_effective_date =  models.CharField(max_length=225,default="Null")
-    allow_zero_value_trns =  models.CharField(max_length=225)
-    allow_naration_in_voucher =  models.CharField(max_length=225)
-    make_optional =  models.CharField(max_length=225)
-    provide_naration =  models.CharField(max_length=225)
-
+    under = models.CharField(max_length=225)
+    maiil_name = models.CharField(max_length=225)
+    mail_address =  models.CharField(max_length=225)
+    mail_state = models.CharField(max_length=225)
+    mail_country = models.CharField(max_length=225,blank=True)
+    mail_pincode = models.CharField(max_length=225,default="Null",blank=True)
+    bank_details =  models.CharField(max_length=225,default="Null")
+    pan_no =  models.CharField(max_length=225)
+    registration_type =  models.CharField(max_length=225)
+    gst_in =  models.CharField(max_length=225)
+    alter_gst =  models.CharField(max_length=225)
+  
     def __str__(self):
-        return self.name
+        return self.name    
+
+
        

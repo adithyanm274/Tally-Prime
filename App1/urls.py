@@ -39,8 +39,12 @@ urlpatterns = [
 
 #-----Create Ledger---------#   
     path('ledger',views.ledger,name='ledger'),
-    # path('create_ledger',views.create_ledger,name="create_ledger"),
-    path('create_ledger1',views.create_ledger1,name="create_ledger1"),
+    path('create_ledger1',views.create_ledger,name="create_ledger1"),
+    path('update_ledger/<int:pk>',views.update_ledger,name="update_ledger"),
+    path('save_ledger/<int:pk>',views.save_ledger,name="save_ledger"),
+
+
+
 
   
 

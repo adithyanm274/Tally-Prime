@@ -369,78 +369,80 @@ def save_voucher(request,pk):
 
 #-----------Ledger Creation-------------#
 
-
 def ledger(request):
-    led=ledgerModels.objects.all()
-    context={'led':led}
+    led=LedgerModels.objects.all()
+    context={'led':led,}
     return render(request, 'ledger.html',context)
 
-# def create_ledger(request):
-#     return render(request,'ledger_create.html')
+def create_ledger(request):
+    return render(request, 'ledger_create.html')
+
+def update_ledger(request,pk):
+    led=VoucherModels.objects.get(id=pk)
+    return render(request,'ledger_create.html',{'i':led})
+
 
 def create_ledger1(request):
     if request.method == 'POST':
-        ledger_name =request.POST['name']
+        Lname = request.POST['name']
         alias = request.POST['alias']
-        ledger_type = request.POST['vtype']
-        abbre = request.POST['abbre']
-        activ_vou_typ = request.POST['avtyp']  
-        meth_vou_num = request.POST['meth_vou_num']
-        useadv = request.POST.get('useadvc', False)
-        prvtdp = request.POST.get('prvtdp', False)
-        use_effct_date = request.POST['uefftdate']  
-        allow_zero_trans = request.POST['allow_zero_trans']  
-        allow_naration_in_vou = request.POST['allow_naration_in_vou']  
-        optional = request.POST['optional'] 
-        provide_narr = request.POST['providenr']  
+        under = request.POST['Ltype']
+        m_name = request.POST['M_name']
+        m_address = request.POST['M_address']  
+        m_state = request.POST['M_state']
+        m_country = request.POST['M_country']
+        m_pincode = request.POST['M_pincode']
+        b_details = request.POST['B_details']  
+        pan_number = request.POST['Pan_no']  
+        r_type = request.POST['R_type']  
+        gstin = request.POST['GST_in'] 
+        gst_alter = request.POST['GST_alter']  
 
-        if ledgerModels.objects.filter(ledger_name=ledger_name).exists():
+        if LedgerModels.objects.filter(ledger_name=Lname).exists():
                 messages.info(request,'This Name is already taken...!')
-                return render(request, 'ledger.html')
+                return render(request, 'ledger_create.html')
         
-        mdl = ledgerModels(
+        ldr = VoucherModels(
 
-            ledger_name=ledger_name,
+            ledger_name=Lname,
             alias=alias,
-            voucher_type=ledger_type,
-            abbreviation=abbre,
-            active_this_voucher_type=activ_vou_typ,
-            method_voucher_numbering=meth_vou_num,
-            use_effective_date=use_effct_date,
-            use_adv_conf = useadv,
-            prvnt_duplictes =prvtdp,
-            allow_zero_value_trns=allow_zero_trans,
-            allow_naration_in_voucher=allow_naration_in_vou,
-            make_optional=optional,
-            provide_naration=provide_narr,
-            print_voucher=print,
+            under=under,
+            mail_name=m_name,
+            mail_address=m_address,
+            mail_state=m_state,
+            mail_country=m_country,
+            mail_pincode = m_pincode,
+            bank_details =b_details,
+            pan_no=pan_number,
+            registration_type=r_type,
+            gst_in=gstin,
+            alter_gst=gst_alter,
 
         )
-        mdl.save()
+        ldr.save()
         messages.info(request,'LEDGER CREATED SUCCESSFULLY')
         return redirect('ledger')
 
-    return render(request, 'ledger_create.html') 
+    return render(request, 'ledger.html')
 
 def save_ledger(request,pk):
     if request.method=='POST':
-        vch =VoucherModels.objects.get(id=pk)
-        vch.voucher_name = request.POST.get('nam')
-        vch.alias = request.POST.get('alias')
-        vch.voucher_type = request.POST.get('vtype')
-        vch.abbreviation = request.POST.get('abbre')
-        vch.active_this_voucher_type = request.POST.get('avtyp')
-        vch.method_voucher_numbering = request.POST.get('meth_vou_num')
-        vch.use_effective_date = request.POST.get('uefftdate')
-        vch.allow_zero_value_trns = request.POST.get('allow_zero_trans')
-        vch.make_optional = request.POST.get('optional')
-        vch.allow_naration_in_voucher = request.POST.get('allow_naration_in_vou')
-        vch.provide_naration = request.POST.get('providenr')
-        vch.print_voucher = request.POST.get('print')
+        led =LedgerModels.objects.get(id=pk)
+        led.ledger_name = request.POST.get('name')
+        led.alias = request.POST.get('alias')
+        led. under = request.POST.get('Ltype')
+        led.mail_name = request.POST.get('M_name')
+        led.mail_address = request.POST.get('M_address')
+        led.mail_state = request.POST.get('M_state')
+        led.mail_country = request.POST.get('M_country')
+        led.mail_pincode = request.POST.get('M_pincode')
+        led.bank_details = request.POST.get('B_details')
+        led.pan_no = request.POST.get('Pan_no')
+        led.registration_type = request.POST.get('R_type')
+        led.gst_in = request.POST.get('GST_in')
+        led.alter_gst = request.POST.get('GST_alter')
+
         
-        vch.save()
-        return redirect('voucher')
-    return render(request, 'update_voucher.html',)       
-
-
-
+        led.save()
+        return redirect('ledger')
+    return render(request, 'ledger_create.html',)
