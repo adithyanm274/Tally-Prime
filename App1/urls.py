@@ -23,7 +23,7 @@ urlpatterns = [
 
 #-----Create Voucher--------#   
     path('voucher',views.voucher,name='voucher'),
-    path('vouchpage',views.vouchpage,name='vouchpage'),
+    # path('vouchpage',views.vouchpage,name='vouchpage'),
     path('load_create_vouchertyp',views.load_create_vouchertyp,name='load_create_vouchertyp'),
     path('create_voucher',views.create_voucher,name="create_voucher"),
     path('update_voucher/<int:pk>',views.update_voucher,name="update_voucher"),
@@ -39,24 +39,14 @@ urlpatterns = [
 
 #-----Create Ledger---------#   
     path('ledger',views.ledger,name='ledger'),
-    path('create_ledger1',views.create_ledger,name="create_ledger1"),
+    path('ledgerpage',views.ledgerpage,name='ledgerpage'),
+    # path('load_create_ledgertype',views.load_create_ledgertyp,name='load_create_ledgertyp'),
+    path('create_ledger',views.create_ledger,name="create_ledger"),
     path('update_ledger/<int:pk>',views.update_ledger,name="update_ledger"),
     path('save_ledger/<int:pk>',views.save_ledger,name="save_ledger"),
 
 
 
 
-  
 
-    
-
-
-
-
-
-
-
-
-
-    
 ]

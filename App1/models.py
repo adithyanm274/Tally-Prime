@@ -94,7 +94,7 @@ class LedgerModels(models.Model):
     ledger_name = models.CharField(max_length=225)
     alias = models.CharField(max_length=225)
     under = models.CharField(max_length=225)
-    maiil_name = models.CharField(max_length=225)
+    mail_name = models.CharField(max_length=225)
     mail_address =  models.CharField(max_length=225)
     mail_state = models.CharField(max_length=225)
     mail_country = models.CharField(max_length=225,blank=True)

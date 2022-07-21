@@ -79,9 +79,9 @@ def selectcompony(request):
 #---------Group Creation---------#
 
 def group(request):
-    # obj1=GroupModel.objects.filter(under ='BankAccount1')
-    obj=GroupModel.objects.all().filter(under ='curntasts1')
-    return render(request, 'groups.html')
+    grp=GroupModel.objects.all()
+    context={'grp':grp,}
+    return render(request, 'groups.html',context)
 
 def branch(request):
     context={ 'name':'Branch/Division' }
@@ -292,8 +292,8 @@ def voucher(request):
     context={'vch':vch,}
     return render(request, 'voucher.html',context)
 
-def vouchpage(request):
-    return render(request, 'vouchpage.html')
+# def vouchpage(request):
+#     return render(request, 'vouchpage.html')
 
 def update_voucher(request,pk):
     vch=VoucherModels.objects.get(id=pk)
@@ -370,19 +370,19 @@ def save_voucher(request,pk):
 #-----------Ledger Creation-------------#
 
 def ledger(request):
-    led=LedgerModels.objects.all()
-    context={'led':led,}
+    led=VoucherModels.objects.all()
+    context={'vch':led,}
     return render(request, 'ledger.html',context)
 
+def ledgerpage(request):
+    return render(request, 'load_create_ledgertype.html')
+
+
+
+# def load_create_ledgertyp(request):
+#     return render(request,'load_create_ledgertype.html')
+
 def create_ledger(request):
-    return render(request, 'ledger_create.html')
-
-def update_ledger(request,pk):
-    led=VoucherModels.objects.get(id=pk)
-    return render(request,'ledger_create.html',{'i':led})
-
-
-def create_ledger1(request):
     if request.method == 'POST':
         Lname = request.POST['name']
         alias = request.POST['alias']
@@ -400,9 +400,9 @@ def create_ledger1(request):
 
         if LedgerModels.objects.filter(ledger_name=Lname).exists():
                 messages.info(request,'This Name is already taken...!')
-                return render(request, 'ledger_create.html')
+                return render(request, 'load_create_ledgertype.html')
         
-        ldr = VoucherModels(
+        ldr = LedgerModels(
 
             ledger_name=Lname,
             alias=alias,
@@ -425,12 +425,17 @@ def create_ledger1(request):
 
     return render(request, 'ledger.html')
 
+
+def update_ledger(request,pk):
+    led=LedgerModels.objects.get(id=pk)
+    return render(request,'update_ledger.html',{'i':led})    
+
 def save_ledger(request,pk):
     if request.method=='POST':
         led =LedgerModels.objects.get(id=pk)
         led.ledger_name = request.POST.get('name')
         led.alias = request.POST.get('alias')
-        led. under = request.POST.get('Ltype')
+        led.under = request.POST.get('Ltype')
         led.mail_name = request.POST.get('M_name')
         led.mail_address = request.POST.get('M_address')
         led.mail_state = request.POST.get('M_state')
@@ -439,10 +444,14 @@ def save_ledger(request,pk):
         led.bank_details = request.POST.get('B_details')
         led.pan_no = request.POST.get('Pan_no')
         led.registration_type = request.POST.get('R_type')
-        led.gst_in = request.POST.get('GST_in')
-        led.alter_gst = request.POST.get('GST_alter')
+        led.gst_in = request.POST.get('Gst_in')
+        led.alter = request.POST.get('gst_alter')
 
         
         led.save()
         return redirect('ledger')
-    return render(request, 'ledger_create.html',)
+    return render(request, 'update_ledger.html',)
+
+
+
+
