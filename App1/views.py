@@ -76,6 +76,10 @@ def selectcompony(request):
     data=crtcompony.objects.all()
     return render(request,'selectcompony.html',{'data':data})
 
+def updatecompony(request):
+    return render(request, 'save_update_company.html')
+
+
 #---------Group Creation---------#
 
 def group(request):
@@ -379,8 +383,8 @@ def ledgerpage(request):
 
 
 
-# def load_create_ledgertyp(request):
-#     return render(request,'load_create_ledgertype.html')
+def load_create_ledgertyp(request):
+    return render(request,'load_create_ledgertype.html')
 
 def create_ledger(request):
     if request.method == 'POST':
@@ -428,7 +432,8 @@ def create_ledger(request):
 
 def update_ledger(request,pk):
     led=LedgerModels.objects.get(id=pk)
-    return render(request,'update_ledger.html',{'i':led})    
+    return render(request,'update_ledger.html',{'i':led})
+       
 
 def save_ledger(request,pk):
     if request.method=='POST':
@@ -450,7 +455,7 @@ def save_ledger(request,pk):
         
         led.save()
         return redirect('ledger')
-    return render(request, 'update_ledger.html',)
+    return render(request,'update_ledger.html')
 
 
 

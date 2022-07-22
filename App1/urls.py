@@ -12,6 +12,9 @@ urlpatterns = [
     path('createcompony',views.createcompony,name='createcompony'),
     path('crtcompony',views.crtecompony,name='crtecompony'),
     path('selectcompony',views.selectcompony,name='selectcompony'),
+    path('updatecompony',views.updatecompony,name='updatecompony'),
+
+
 
 #-----Create Currency-------#
     path('currency',views.currency,name='currency'),
@@ -40,7 +43,7 @@ urlpatterns = [
 #-----Create Ledger---------#   
     path('ledger',views.ledger,name='ledger'),
     path('ledgerpage',views.ledgerpage,name='ledgerpage'),
-    # path('load_create_ledgertype',views.load_create_ledgertyp,name='load_create_ledgertyp'),
+    path('load_create_ledgertype',views.load_create_ledgertyp,name='load_create_ledgertyp'),
     path('create_ledger',views.create_ledger,name="create_ledger"),
     path('update_ledger/<int:pk>',views.update_ledger,name="update_ledger"),
     path('save_ledger/<int:pk>',views.save_ledger,name="save_ledger"),
