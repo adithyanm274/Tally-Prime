@@ -76,9 +76,6 @@ def selectcompony(request):
     data=crtcompony.objects.all()
     return render(request,'selectcompony.html',{'data':data})
 
-def updatecompony(request):
-    return render(request, 'save_update_company.html')
-
 
 #---------Group Creation---------#
 
@@ -432,7 +429,7 @@ def create_ledger(request):
 
 def update_ledger(request,pk):
     led=LedgerModels.objects.get(id=pk)
-    return render(request,'update_ledger.html',{'i':led})
+    return render(request,'update_ledger.html',{'j':led})
        
 
 def save_ledger(request,pk):

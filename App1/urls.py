@@ -12,7 +12,6 @@ urlpatterns = [
     path('createcompony',views.createcompony,name='createcompony'),
     path('crtcompony',views.crtecompony,name='crtecompony'),
     path('selectcompony',views.selectcompony,name='selectcompony'),
-    path('updatecompony',views.updatecompony,name='updatecompony'),
 
 
 

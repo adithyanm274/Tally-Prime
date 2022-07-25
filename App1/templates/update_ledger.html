@@ -18,20 +18,20 @@
   <div class="m-0">
     <h6 style class="bg-info text-light p-2 m-0 text-center">Update Ledger</h6>
     
-            <form class="p-5" action="update_ledger" method="post" style="background-color:rgba(0,0,0,.4);">
+            <form class="p-5" action="/save_ledger/{{ j.id }}" method="post" style="background-color:rgba(0,0,0,.4);">
                 {% csrf_token %}
 
                 
                 <div class="p-3">
                 <div class="row container-fluid  p-2 m-0">
                     <div class="col-sm-2 m-0 p-0"> <label for="a">Name</label></div>
-                    <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder=""value="{{ i.ledger_name }}" name="name"></div>
+                    <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" value="{{ j.ledger_name }}" name="name"></div>
                     <div class="col-sm-7 m-0 p-0"></div>
                 </div>
                 <div class="row container-fluid  p-2 m-0">
                     <div class="col-sm-2 m-0 p-0"> <label for="b">Alias</label></div>
                     <div class="col-sm-3 m-0 p-0"> 
-                    <input type="text" class="form-control" id="b" placeholder="" value="{{ i.alias }}" name="alias"></div>
+                    <input type="text" class="form-control" id="b" value="{{ j.alias }}" name="alias"></div>
                     <div class="col-sm-7 m-0 p-0"></div>
                 </div>
             </div>
@@ -46,13 +46,10 @@
                             <div class="col-sm-10 m-0 p-0"></div>
                             <div class="col-sm-6 m-0 p-0"></div>
                         </div>
-
+<!-- 
                         <div class="row container-fluid  p-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="c">Under</label></div>
                             <div class="col-sm-6 m-0 p-0">
-
-                                {% if i.voucher_type == 'Attendence' %}
-
 
                                 <select name="Ltype" id="aa" class=" form-control">
                                     <option value="Bank_Account">Bank_Accounts</option>
@@ -84,7 +81,7 @@
                                                             
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         
 
                         <!-- <div class="row container-fluid  p-2">
@@ -174,120 +171,86 @@
                     </div>
                     <div class="col-sm-4 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
                         <h5 class="text-center"><u>Mailling Detais</u></h5>
-                        
-
+                
                         <div class="form-group">
                             <label for="exampleInputEmail1">Name</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp"value="{{ i.mail_name }}"  placeholder="" name="M_name">
+                            <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.mail_name }}" name="M_name">
                           </div>
                           <div class="form-group">
                             <label for="exampleInputEmail1">Address</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp"value="{{ i.mail_address }}"  placeholder=""name="M_address">
+                            <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.mail_address }}" name="M_address">
                           </div>
                           <div class="form-group">
                             <label for="exampleInputEmail1">State</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp"value="{{ i.mail_state }}"  placeholder=""name="M_state">
+                            <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.mail_state }}" name="M_state">
                           </div>
                           <div class="form-group">
                             <label for="exampleInputEmail1">Country</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ i.mail_country }}" placeholder=""name="M_country">
+                            <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.mail_state }}" name="M_country">
                           </div>
                           <div class="form-group">
                             <label for="exampleInputEmail1">Pincode</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" placeholder=""value="{{ i.mail_pincode }}"  name="M_pincode">
+                            <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.mail_pincode }}" name="M_pincode">
                           </div>
                     </div>
                 
                     <div class="col-sm-3 m-0 p-4">
                         <h5 class="text-center"><u>Banking Details</u></h5>
-                       
+
+                            {% if j.bank_details  == 'No' %}
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label><h6>Provide bank details</h6></label></div>
-                            {% if i.bank_details  == 'No' %}
-
                             <select name="B_details" id="aa" class=" form-control">
                             <option value="1">NO</option>
                             <option value="2">YES</option>
                           </select>
-
-                          {% elif i.bank_details  == 'Yes' %}
-
+                          {% elif j.bank_details  == 'Yes' %}
                           <select name="B_details" id="aa" class=" form-control">
                             <option value="1">NO</option>
                             <option value="2">YES</option>
                           </select>
-
                           {% endif %}
-
-                      </div>
-                      <br><br>
+                      </div><br><br>
                       <h5><center><u>Tax registration Details</u></center></h5><br>
                       <div class="form-group">
                         <label>PAN/IT Number</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" placeholder=""value="{{ i.pan_no }}"  name="Pan_no">
+                        <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.pan_no }}"name="Pan_no">
                       </div>
                       <div class="row container-fluid  p-0">
                         <div class="col-sm-6 m-0 p-0"> <label for="c">Registeration Type</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            
-                            {% if i.registration_type == 'unk' %}
+                            {% if j. registration_type == 'No' %}
 
                         <select name="R_type" id="aa" class=" form-control">
                             <option value="1">Unknown</option>
                             <option value="2">Composition</option>
-                            <option value="3">Consumer</option>
-                            <option value="4">Regular</option>
-                            <option value="5">Unregistered</option>
+                            <option value="1">Consumer</option>
+                            <option value="1">Regular</option>
+                            <option value="1">Unregistered</option>
                           </select>
-                          {% elif i.registration_type == 'comp' %}
+                          {% elif j.regstration_type  == 'Yes' %}
                           <select name="R_type" id="aa" class=" form-control">
                             <option value="1">Unknown</option>
                             <option value="2">Composition</option>
-                            <option value="3">Consumer</option>
-                            <option value="4">Regular</option>
-                            <option value="5">Unregistered</option>
+                            <option value="1">Consumer</option>
+                            <option value="1">Regular</option>
+                            <option value="1">Unregistered</option>
                           </select>
-                          {% elif i.registration_type == 'con' %}
-                          <select name="R_type" id="aa" class=" form-control">
-                            <option value="1">Unknown</option>
-                            <option value="2">Composition</option>
-                            <option value="3">Consumer</option>
-                            <option value="4">Regular</option>
-                            <option value="5">Unregistered</option>
-                          </select>
-                          {% elif i.registration_type == 'reg' %}
-                          <select name="R_type" id="aa" class=" form-control">
-                            <option value="1">Unknown</option>
-                            <option value="2">Composition</option>
-                            <option value="3">Consumer</option>
-                            <option value="4">Regular</option>
-                            <option value="5">Unregistered</option>
-                          </select>
-                          {% elif i.registration_type == 'unreg' %}
-                          <select name="R_type" id="aa" class=" form-control">
-                            <option value="1">Unknown</option>
-                            <option value="2">Composition</option>
-                            <option value="3">Consumer</option>
-                            <option value="4">Regular</option>
-                            <option value="5">Unregistered</option>
-                          </select>
-
-                          {% endif %}
 
                       </div>
                       
                     </div>
                     <div class="form-group">
                         <label>GSTIN/UIN</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" placeholder=""value="{{ i.gst_in }}" name="GST_in">
+                        <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.gst_in }}" name="Gst_in">
                       </div>
                       <div class="form-group">
                         <label>Alter GST Details</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" placeholder=""value="{{ i.alter_gst }}" name="GST_alter">
+                        <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.alter }}" name="gst_alter">
                       </div>
                 </div>
                 </div>
-                <div class="enter w-100 py-4"><button class="btn btn-info w-25">ALTER</button></div>   
+                <div class="enter w-100 py-4"><button class="btn btn-info w-25">CREATE</button></div>   
                 
             </form>
         </div>  

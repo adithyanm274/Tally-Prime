@@ -171,6 +171,8 @@ td
       <div style="width: 50%; text-align: end;">
         <h5 style="color: black; padding:5px;font-size: 16px;">For 1-Apr-22</h5>
         <a href="ledgerpage"><h8 style="text-align:left;">Create</h8></a><br>
+        <a href="update_ledger"><h8 style="text-align:left;">update</h8></a><br>
+
 
         <a href="home"><h8 style="text-align:left;">Back</h8></a><br>
 
@@ -302,10 +304,10 @@ readMoreBtn.addEventListener("click", (e) => {
   }
 });
 </script> -->
-{% for i in led %}
-  <a href="{% url 'update_ledger' i.id  %}"><button  class="btns_prnt" id="create"><h5>{{ i.ledger_name }}</h5></button></a>
+{% for j in led %}
+  <a href="{% url 'update_ledger' j.id  %}"><button  class="btns_prnt" id="a"><h5>{{ j.ledger_name }}</h5></button></a>
   <!-- <a href="{% url 'currency_alter' i.id  %}"><button  class="btns_prnt p-3" id="create"><h6>{{ i.symbol }}</h6></button></a> -->
-  {% endfor %}
+{% endfor %}
 
 </div>
 {% endblock %}
