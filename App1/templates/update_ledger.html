@@ -25,13 +25,13 @@
                 <div class="p-3">
                 <div class="row container-fluid  p-2 m-0">
                     <div class="col-sm-2 m-0 p-0"> <label for="a">Name</label></div>
-                    <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" value="{{ j.ledger_name }}" name="name"></div>
+                    <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder="" value="{{ j.ledger_name }}" name="name"></div>
                     <div class="col-sm-7 m-0 p-0"></div>
                 </div>
                 <div class="row container-fluid  p-2 m-0">
                     <div class="col-sm-2 m-0 p-0"> <label for="b">Alias</label></div>
                     <div class="col-sm-3 m-0 p-0"> 
-                    <input type="text" class="form-control" id="b" value="{{ j.alias }}" name="alias"></div>
+                    <input type="text" class="form-control" id="b" placeholder="" value="{{ j.alias }}" name="alias"></div>
                     <div class="col-sm-7 m-0 p-0"></div>
                 </div>
             </div>
@@ -39,19 +39,23 @@
                 
                     
                    
-                <div class="row container-fluid  p- m-" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
-                    <div class="col-sm-4 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
-                        <!-- <h5 class="text-center">Under</h5> -->
+                <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
+                    <div class="col-sm-5 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                        <h5 class="text-center">General</h5>
                         <div class="row container-fluid  p-0">
-                            <div class="col-sm-10 m-0 p-0"></div>
+                            <div class="col-sm-6 m-0 p-0"></div>
                             <div class="col-sm-6 m-0 p-0"></div>
                         </div>
-<!-- 
-                        <div class="row container-fluid  p-0">
+
+                        <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="c">Under</label></div>
                             <div class="col-sm-6 m-0 p-0">
 
-                                <select name="Ltype" id="aa" class=" form-control">
+                                
+
+                                {% if j.under == 'Bank_Accounts' %}
+
+                                <select required onchange="hi()" name="Ltype" id="aa" class=" form-control">
                                     <option value="Bank_Account">Bank_Accounts</option>
                                     <option value="Bank_OCC_AC" >Bank OCC</option>
                                     <option  value="Bankod">Bank OD</option>
@@ -80,178 +84,1215 @@
                                     <option value="stock">Stock-in-Hand</option>
                                                             
                                 </select>
-                            </div>
-                        </div> -->
-                        
 
-                        <!-- <div class="row container-fluid  p-2">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="ab" placeholder=""  name="abbre"></div>
-                        </div> -->
-                        <div class="col-sm-3 my-1">
-                            <!-- <div class="col-sm-6 m-0 p-0"> <label for="e">Activate this voucher type</label></div>
+                                {% elif j.under == 'Bank_OCC' %}
+
+                                <select required onchange="hi()" name="Ltype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Bank_Account">Bank_Accounts</option>
+                                    <option value="Bank_OCC_AC" >Bank OCC</option>
+                                    <option  value="Bankod">Bank OD</option>
+                                    <option value="Bank_Account">Branch Division</option>
+                                    <option  value="Bank_Account">Capital Amount</option>
+                                    <option value="Bank_Account">Cash in Hand</option>
+                                    <option  value="Curntasts1">Current Assets</option>
+                                    <option value="current_liabilities">Current Liabilities</option>
+                                    <option  value="Bank-Account1">Deposits(Asset)</option>
+                                    <option  value="dirctexpncs1">Direct Expenses</option>
+                                    <option  value="directincome">Direct Incomes</option>
+                                    <option value="dutiesAndtax">Duties and Taxes</option>
+                                    <option  value="Expences_direct">Expenses(Direct)</option>
+                                    <option  value="Payment">Expences(Indirect)</option>
+                            `       <option value="Fixed_Assets">Fixed Assets</option>
+                                    <option  value="income_direct">income(Direct)</option>
+                                    <option  value="Investments">Investments</option>
+                                    <option value="loans_advance">Loans and Advances(Assets)</option>
+                                    <option  value="Loans_liablity">Loans(Liability)</option>
+                                    <option  value="Mis_Expenses">Misc.Expenses</option>
+                                    <option value="provisons">provisions</option>
+                                    <option value="Purchase_Accounts">purchase accounts</option>
+                                    <option  value="retained">Retained Earning</option>
+                                    <option value="Sales_Account">Sales Account</option>
+                                    <option value="Secured_loans">Secured Loans</option>
+                                    <option value="stock">Stock-in-Hand</option>
+                                                             
+                                </select>
+
+                                {% elif j.under == 'Bank OD' %}
+
+                                <select required onchange="hi()" name="Ltype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Bank_Account">Bank_Accounts</option>
+                                    <option value="Bank_OCC_AC" >Bank OCC</option>
+                                    <option  value="Bankod">Bank OD</option>
+                                    <option value="Bank_Account">Branch Division</option>
+                                    <option  value="Bank_Account">Capital Amount</option>
+                                    <option value="Bank_Account">Cash in Hand</option>
+                                    <option  value="Curntasts1">Current Assets</option>
+                                    <option value="current_liabilities">Current Liabilities</option>
+                                    <option  value="Bank-Account1">Deposits(Asset)</option>
+                                    <option  value="dirctexpncs1">Direct Expenses</option>
+                                    <option  value="directincome">Direct Incomes</option>
+                                    <option value="dutiesAndtax">Duties and Taxes</option>
+                                    <option  value="Expences_direct">Expenses(Direct)</option>
+                                    <option  value="Payment">Expences(Indirect)</option>
+                            `       <option value="Fixed_Assets">Fixed Assets</option>
+                                    <option  value="income_direct">income(Direct)</option>
+                                    <option  value="Investments">Investments</option>
+                                    <option value="loans_advance">Loans and Advances(Assets)</option>
+                                    <option  value="Loans_liablity">Loans(Liability)</option>
+                                    <option  value="Mis_Expenses">Misc.Expenses</option>
+                                    <option value="provisons">provisions</option>
+                                    <option value="Purchase_Accounts">purchase accounts</option>
+                                    <option  value="retained">Retained Earning</option>
+                                    <option value="Sales_Account">Sales Account</option>
+                                    <option value="Secured_loans">Secured Loans</option>
+                                    <option value="stock">Stock-in-Hand</option>
+                                                                                
+                                </select>
+
+                                {% elif j.under == 'Branch Division' %}
+
+                                <select required onchange="hi()" name="Ltype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Bank_Account">Bank_Accounts</option>
+                                    <option value="Bank_OCC_AC" >Bank OCC</option>
+                                    <option  value="Bankod">Bank OD</option>
+                                    <option value="Bank_Account">Branch Division</option>
+                                    <option  value="Bank_Account">Capital Amount</option>
+                                    <option value="Bank_Account">Cash in Hand</option>
+                                    <option  value="Curntasts1">Current Assets</option>
+                                    <option value="current_liabilities">Current Liabilities</option>
+                                    <option  value="Bank-Account1">Deposits(Asset)</option>
+                                    <option  value="dirctexpncs1">Direct Expenses</option>
+                                    <option  value="directincome">Direct Incomes</option>
+                                    <option value="dutiesAndtax">Duties and Taxes</option>
+                                    <option  value="Expences_direct">Expenses(Direct)</option>
+                                    <option  value="Payment">Expences(Indirect)</option>
+                            `       <option value="Fixed_Assets">Fixed Assets</option>
+                                    <option  value="income_direct">income(Direct)</option>
+                                    <option  value="Investments">Investments</option>
+                                    <option value="loans_advance">Loans and Advances(Assets)</option>
+                                    <option  value="Loans_liablity">Loans(Liability)</option>
+                                    <option  value="Mis_Expenses">Misc.Expenses</option>
+                                    <option value="provisons">provisions</option>
+                                    <option value="Purchase_Accounts">purchase accounts</option>
+                                    <option  value="retained">Retained Earning</option>
+                                    <option value="Sales_Account">Sales Account</option>
+                                    <option value="Secured_loans">Secured Loans</option>
+                                    <option value="stock">Stock-in-Hand</option>
+                                                                                                                                            
+                                </select>
+
+                                {% elif j.under == 'Capital Amount' %}
+
+                                <select required onchange="hi()" name="Ltype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Bank_Account">Bank_Accounts</option>
+                                    <option value="Bank_OCC_AC" >Bank OCC</option>
+                                    <option  value="Bankod">Bank OD</option>
+                                    <option value="Bank_Account">Branch Division</option>
+                                    <option  value="Bank_Account">Capital Amount</option>
+                                    <option value="Bank_Account">Cash in Hand</option>
+                                    <option  value="Curntasts1">Current Assets</option>
+                                    <option value="current_liabilities">Current Liabilities</option>
+                                    <option  value="Bank-Account1">Deposits(Asset)</option>
+                                    <option  value="dirctexpncs1">Direct Expenses</option>
+                                    <option  value="directincome">Direct Incomes</option>
+                                    <option value="dutiesAndtax">Duties and Taxes</option>
+                                    <option  value="Expences_direct">Expenses(Direct)</option>
+                                    <option  value="Payment">Expences(Indirect)</option>
+                            `       <option value="Fixed_Assets">Fixed Assets</option>
+                                    <option  value="income_direct">income(Direct)</option>
+                                    <option  value="Investments">Investments</option>
+                                    <option value="loans_advance">Loans and Advances(Assets)</option>
+                                    <option  value="Loans_liablity">Loans(Liability)</option>
+                                    <option  value="Mis_Expenses">Misc.Expenses</option>
+                                    <option value="provisons">provisions</option>
+                                    <option value="Purchase_Accounts">purchase accounts</option>
+                                    <option  value="retained">Retained Earning</option>
+                                    <option value="Sales_Account">Sales Account</option>
+                                    <option value="Secured_loans">Secured Loans</option>
+                                    <option value="stock">Stock-in-Hand</option>
+                                                               
+                                </select>
+
+                                {% elif j.under == 'Cash in Hand' %}
+
+                                <select required onchange="hi()" name="Ltype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Bank_Account">Bank_Accounts</option>
+                                    <option value="Bank_OCC_AC" >Bank OCC</option>
+                                    <option  value="Bankod">Bank OD</option>
+                                    <option value="Bank_Account">Branch Division</option>
+                                    <option  value="Bank_Account">Capital Amount</option>
+                                    <option value="Bank_Account">Cash in Hand</option>
+                                    <option  value="Curntasts1">Current Assets</option>
+                                    <option value="current_liabilities">Current Liabilities</option>
+                                    <option  value="Bank-Account1">Deposits(Asset)</option>
+                                    <option  value="dirctexpncs1">Direct Expenses</option>
+                                    <option  value="directincome">Direct Incomes</option>
+                                    <option value="dutiesAndtax">Duties and Taxes</option>
+                                    <option  value="Expences_direct">Expenses(Direct)</option>
+                                    <option  value="Payment">Expences(Indirect)</option>
+                            `       <option value="Fixed_Assets">Fixed Assets</option>
+                                    <option  value="income_direct">income(Direct)</option>
+                                    <option  value="Investments">Investments</option>
+                                    <option value="loans_advance">Loans and Advances(Assets)</option>
+                                    <option  value="Loans_liablity">Loans(Liability)</option>
+                                    <option  value="Mis_Expenses">Misc.Expenses</option>
+                                    <option value="provisons">provisions</option>
+                                    <option value="Purchase_Accounts">purchase accounts</option>
+                                    <option  value="retained">Retained Earning</option>
+                                    <option value="Sales_Account">Sales Account</option>
+                                    <option value="Secured_loans">Secured Loans</option>
+                                    <option value="stock">Stock-in-Hand</option>
+                                                               
+                                </select>
+
+                                {% elif i.voucher_type == 'JobWorkOutOrder' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" selected>Job Work Out Order</option>
+                                    <option  value="Journal">Journal</option>
+                                    <option  value="MaterialIn">Material In</option>
+                                    <option value="MaterialOut">Material Out</option>
+                                    <option  value="Memorandum">Memorandum</option>
+                                    <option  value="Payment">Payment</option>
+                            `       <option value="Payroll">Payroll</option>
+                                    <option  value="PhysicalStock">Physical Stock</option>
+                                    <option  value="Purchase">Purchase</option>
+                                    <option value="PurchaseOrder">Purchase Order</option>
+                                    <option  value="Receipt">Receipt</option>
+                                    <option  value="ReceiptNote">Receipt Note</option>
+                                    <option value="RejectionIn">Rejection In</option>
+                                    <option value="RejectionOut">Rejection Out</option>
+                                    <option  value="ReversingJournal">Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'JobWorkOutOrder' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" selected>Job Work Out Order</option>
+                                    <option  value="Journal">Journal</option>
+                                    <option  value="MaterialIn">Material In</option>
+                                    <option value="MaterialOut">Material Out</option>
+                                    <option  value="Memorandum">Memorandum</option>
+                                    <option  value="Payment">Payment</option>
+                            `       <option value="Payroll">Payroll</option>
+                                    <option  value="PhysicalStock">Physical Stock</option>
+                                    <option  value="Purchase">Purchase</option>
+                                    <option value="PurchaseOrder">Purchase Order</option>
+                                    <option  value="Receipt">Receipt</option>
+                                    <option  value="ReceiptNote">Receipt Note</option>
+                                    <option value="RejectionIn">Rejection In</option>
+                                    <option value="RejectionOut">Rejection Out</option>
+                                    <option  value="ReversingJournal">Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'Journal' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" selected>Journal</option>
+                                    <option  value="MaterialIn">Material In</option>
+                                    <option value="MaterialOut">Material Out</option>
+                                    <option  value="Memorandum">Memorandum</option>
+                                    <option  value="Payment">Payment</option>
+                            `       <option value="Payroll">Payroll</option>
+                                    <option  value="PhysicalStock">Physical Stock</option>
+                                    <option  value="Purchase">Purchase</option>
+                                    <option value="PurchaseOrder">Purchase Order</option>
+                                    <option  value="Receipt">Receipt</option>
+                                    <option  value="ReceiptNote">Receipt Note</option>
+                                    <option value="RejectionIn">Rejection In</option>
+                                    <option value="RejectionOut">Rejection Out</option>
+                                    <option  value="ReversingJournal">Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'MaterialIn' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" selected>Material In</option>
+                                    <option value="MaterialOut">Material Out</option>
+                                    <option  value="Memorandum">Memorandum</option>
+                                    <option  value="Payment">Payment</option>
+                            `       <option value="Payroll">Payroll</option>
+                                    <option  value="PhysicalStock">Physical Stock</option>
+                                    <option  value="Purchase">Purchase</option>
+                                    <option value="PurchaseOrder">Purchase Order</option>
+                                    <option  value="Receipt">Receipt</option>
+                                    <option  value="ReceiptNote">Receipt Note</option>
+                                    <option value="RejectionIn">Rejection In</option>
+                                    <option value="RejectionOut">Rejection Out</option>
+                                    <option  value="ReversingJournal">Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'MaterialOut' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" >Material In</option>
+                                    <option value="MaterialOut" selected>Material Out</option>
+                                    <option  value="Memorandum">Memorandum</option>
+                                    <option  value="Payment">Payment</option>
+                            `       <option value="Payroll">Payroll</option>
+                                    <option  value="PhysicalStock">Physical Stock</option>
+                                    <option  value="Purchase">Purchase</option>
+                                    <option value="PurchaseOrder">Purchase Order</option>
+                                    <option  value="Receipt">Receipt</option>
+                                    <option  value="ReceiptNote">Receipt Note</option>
+                                    <option value="RejectionIn">Rejection In</option>
+                                    <option value="RejectionOut">Rejection Out</option>
+                                    <option  value="ReversingJournal">Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'Memorandum' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" >Material In</option>
+                                    <option value="MaterialOut" >Material Out</option>
+                                    <option  value="Memorandum" selected>Memorandum</option>
+                                    <option  value="Payment">Payment</option>
+                            `       <option value="Payroll">Payroll</option>
+                                    <option  value="PhysicalStock">Physical Stock</option>
+                                    <option  value="Purchase">Purchase</option>
+                                    <option value="PurchaseOrder">Purchase Order</option>
+                                    <option  value="Receipt">Receipt</option>
+                                    <option  value="ReceiptNote">Receipt Note</option>
+                                    <option value="RejectionIn">Rejection In</option>
+                                    <option value="RejectionOut">Rejection Out</option>
+                                    <option  value="ReversingJournal">Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                
+                                {% elif i.voucher_type == 'Payment' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" >Material In</option>
+                                    <option value="MaterialOut" >Material Out</option>
+                                    <option  value="Memorandum" >Memorandum</option>
+                                    <option  value="Payment" selected>Payment</option>
+                            `       <option value="Payroll">Payroll</option>
+                                    <option  value="PhysicalStock">Physical Stock</option>
+                                    <option  value="Purchase">Purchase</option>
+                                    <option value="PurchaseOrder">Purchase Order</option>
+                                    <option  value="Receipt">Receipt</option>
+                                    <option  value="ReceiptNote">Receipt Note</option>
+                                    <option value="RejectionIn">Rejection In</option>
+                                    <option value="RejectionOut">Rejection Out</option>
+                                    <option  value="ReversingJournal">Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'Payroll' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" >Material In</option>
+                                    <option value="MaterialOut" >Material Out</option>
+                                    <option  value="Memorandum" >Memorandum</option>
+                                    <option  value="Payment" >Payment</option>
+                            `       <option value="Payroll" selected>Payroll</option>
+                                    <option  value="PhysicalStock">Physical Stock</option>
+                                    <option  value="Purchase">Purchase</option>
+                                    <option value="PurchaseOrder">Purchase Order</option>
+                                    <option  value="Receipt">Receipt</option>
+                                    <option  value="ReceiptNote">Receipt Note</option>
+                                    <option value="RejectionIn">Rejection In</option>
+                                    <option value="RejectionOut">Rejection Out</option>
+                                    <option  value="ReversingJournal">Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'PhysicalStock' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" >Material In</option>
+                                    <option value="MaterialOut" >Material Out</option>
+                                    <option  value="Memorandum" >Memorandum</option>
+                                    <option  value="Payment" >Payment</option>
+                            `       <option value="Payroll" >Payroll</option>
+                                    <option  value="PhysicalStock" selected>Physical Stock</option>
+                                    <option  value="Purchase">Purchase</option>
+                                    <option value="PurchaseOrder">Purchase Order</option>
+                                    <option  value="Receipt">Receipt</option>
+                                    <option  value="ReceiptNote">Receipt Note</option>
+                                    <option value="RejectionIn">Rejection In</option>
+                                    <option value="RejectionOut">Rejection Out</option>
+                                    <option  value="ReversingJournal">Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'Purchase' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" >Material In</option>
+                                    <option value="MaterialOut" >Material Out</option>
+                                    <option  value="Memorandum" >Memorandum</option>
+                                    <option  value="Payment" >Payment</option>
+                            `       <option value="Payroll" >Payroll</option>
+                                    <option  value="PhysicalStock" >Physical Stock</option>
+                                    <option  value="Purchase" selected>Purchase</option>
+                                    <option value="PurchaseOrder">Purchase Order</option>
+                                    <option  value="Receipt">Receipt</option>
+                                    <option  value="ReceiptNote">Receipt Note</option>
+                                    <option value="RejectionIn">Rejection In</option>
+                                    <option value="RejectionOut">Rejection Out</option>
+                                    <option  value="ReversingJournal">Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'PurchaseOrder' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" >Material In</option>
+                                    <option value="MaterialOut" >Material Out</option>
+                                    <option  value="Memorandum" >Memorandum</option>
+                                    <option  value="Payment" >Payment</option>
+                            `       <option value="Payroll" >Payroll</option>
+                                    <option  value="PhysicalStock" >Physical Stock</option>
+                                    <option  value="Purchase" >Purchase</option>
+                                    <option value="PurchaseOrder" selected>Purchase Order</option>
+                                    <option  value="Receipt">Receipt</option>
+                                    <option  value="ReceiptNote">Receipt Note</option>
+                                    <option value="RejectionIn">Rejection In</option>
+                                    <option value="RejectionOut">Rejection Out</option>
+                                    <option  value="ReversingJournal">Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'Receipt' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" >Material In</option>
+                                    <option value="MaterialOut" >Material Out</option>
+                                    <option  value="Memorandum" >Memorandum</option>
+                                    <option  value="Payment" >Payment</option>
+                            `       <option value="Payroll" >Payroll</option>
+                                    <option  value="PhysicalStock" >Physical Stock</option>
+                                    <option  value="Purchase" >Purchase</option>
+                                    <option value="PurchaseOrder" >Purchase Order</option>
+                                    <option  value="Receipt" selected>Receipt</option>
+                                    <option  value="ReceiptNote">Receipt Note</option>
+                                    <option value="RejectionIn">Rejection In</option>
+                                    <option value="RejectionOut">Rejection Out</option>
+                                    <option  value="ReversingJournal">Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'ReceiptNote' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" >Material In</option>
+                                    <option value="MaterialOut" >Material Out</option>
+                                    <option  value="Memorandum" >Memorandum</option>
+                                    <option  value="Payment" >Payment</option>
+                            `       <option value="Payroll" >Payroll</option>
+                                    <option  value="PhysicalStock" >Physical Stock</option>
+                                    <option  value="Purchase" >Purchase</option>
+                                    <option value="PurchaseOrder" >Purchase Order</option>
+                                    <option  value="Receipt" >Receipt</option>
+                                    <option  value="ReceiptNote" selected>Receipt Note</option>
+                                    <option value="RejectionIn">Rejection In</option>
+                                    <option value="RejectionOut">Rejection Out</option>
+                                    <option  value="ReversingJournal">Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'RejectionIn' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" >Material In</option>
+                                    <option value="MaterialOut" >Material Out</option>
+                                    <option  value="Memorandum" >Memorandum</option>
+                                    <option  value="Payment" >Payment</option>
+                            `       <option value="Payroll" >Payroll</option>
+                                    <option  value="PhysicalStock" >Physical Stock</option>
+                                    <option  value="Purchase" >Purchase</option>
+                                    <option value="PurchaseOrder" >Purchase Order</option>
+                                    <option  value="Receipt" >Receipt</option>
+                                    <option  value="ReceiptNote" >Receipt Note</option>
+                                    <option value="RejectionIn" selected>Rejection In</option>
+                                    <option value="RejectionOut">Rejection Out</option>
+                                    <option  value="ReversingJournal">Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'RejectionOut' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" >Material In</option>
+                                    <option value="MaterialOut" >Material Out</option>
+                                    <option  value="Memorandum" >Memorandum</option>
+                                    <option  value="Payment" >Payment</option>
+                            `       <option value="Payroll" >Payroll</option>
+                                    <option  value="PhysicalStock" >Physical Stock</option>
+                                    <option  value="Purchase" >Purchase</option>
+                                    <option value="PurchaseOrder" >Purchase Order</option>
+                                    <option  value="Receipt" >Receipt</option>
+                                    <option  value="ReceiptNote" >Receipt Note</option>
+                                    <option value="RejectionIn" >Rejection In</option>
+                                    <option value="RejectionOut" selected>Rejection Out</option>
+                                    <option  value="ReversingJournal">Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'ReversingJournal' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" >Material In</option>
+                                    <option value="MaterialOut" >Material Out</option>
+                                    <option  value="Memorandum" >Memorandum</option>
+                                    <option  value="Payment" >Payment</option>
+                            `       <option value="Payroll" >Payroll</option>
+                                    <option  value="PhysicalStock" >Physical Stock</option>
+                                    <option  value="Purchase" >Purchase</option>
+                                    <option value="PurchaseOrder" >Purchase Order</option>
+                                    <option  value="Receipt" >Receipt</option>
+                                    <option  value="ReceiptNote" >Receipt Note</option>
+                                    <option value="RejectionIn" >Rejection In</option>
+                                    <option value="RejectionOut" >Rejection Out</option>
+                                    <option  value="ReversingJournal" selected>Reversing Journal</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'Sales' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" >Material In</option>
+                                    <option value="MaterialOut" >Material Out</option>
+                                    <option  value="Memorandum" >Memorandum</option>
+                                    <option  value="Payment" >Payment</option>
+                            `       <option value="Payroll" >Payroll</option>
+                                    <option  value="PhysicalStock" >Physical Stock</option>
+                                    <option  value="Purchase" >Purchase</option>
+                                    <option value="PurchaseOrder" >Purchase Order</option>
+                                    <option  value="Receipt" >Receipt</option>
+                                    <option  value="ReceiptNote" >Receipt Note</option>
+                                    <option value="RejectionIn" >Rejection In</option>
+                                    <option value="RejectionOut" >Rejection Out</option>
+                                    <option  value="ReversingJournal" >Reversing Journal</option>
+                                    <option value="Sales" selected>Sales</option>
+                                    <option value="SalesOrder">Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                
+                                {% elif i.voucher_type == 'SalesOrder' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" >Material In</option>
+                                    <option value="MaterialOut" >Material Out</option>
+                                    <option  value="Memorandum" >Memorandum</option>
+                                    <option  value="Payment" >Payment</option>
+                            `       <option value="Payroll" >Payroll</option>
+                                    <option  value="PhysicalStock" >Physical Stock</option>
+                                    <option  value="Purchase" >Purchase</option>
+                                    <option value="PurchaseOrder" >Purchase Order</option>
+                                    <option  value="Receipt" >Receipt</option>
+                                    <option  value="ReceiptNote" >Receipt Note</option>
+                                    <option value="RejectionIn" >Rejection In</option>
+                                    <option value="RejectionOut" >Rejection Out</option>
+                                    <option  value="ReversingJournal" >Reversing Journal</option>
+                                    <option value="Sales" >Sales</option>
+                                    <option value="SalesOrder" selected>Sales Order</option>
+                                    <option value="StockJournal">Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% elif i.voucher_type == 'StockJournal' %}
+
+                                <select required onchange="hi()" name="vtype" id="aa" class=" form-control">
+                                    <option value="" selected disabled>select type</option>
+                                    <option value="Attendence"  >Attendence</option>
+                                    <option  value="contra" >Contra</option>
+                                    <option value="CreditNote" >Credit Note</option>
+                                    <option  value="CreditNote">Credit Note</option>
+                                    <option value="DebitNote" >Debit Note</option>
+                                    <option  value="DeliveryNote" >Delivery Note</option>
+                                    <option value="JobWorkinOrder" >Job work in Order</option>
+                                    <option  value="JobWorkOutOrder" >Job Work Out Order</option>
+                                    <option  value="Journal" >Journal</option>
+                                    <option  value="MaterialIn" >Material In</option>
+                                    <option value="MaterialOut" >Material Out</option>
+                                    <option  value="Memorandum" >Memorandum</option>
+                                    <option  value="Payment" >Payment</option>
+                            `       <option value="Payroll" >Payroll</option>
+                                    <option  value="PhysicalStock" >Physical Stock</option>
+                                    <option  value="Purchase" >Purchase</option>
+                                    <option value="PurchaseOrder" >Purchase Order</option>
+                                    <option  value="Receipt" >Receipt</option>
+                                    <option  value="ReceiptNote" >Receipt Note</option>
+                                    <option value="RejectionIn" >Rejection In</option>
+                                    <option value="RejectionOut" >Rejection Out</option>
+                                    <option  value="ReversingJournal" >Reversing Journal</option>
+                                    <option value="Sales" >Sales</option>
+                                    <option value="SalesOrder" >Sales Order</option>
+                                    <option value="StockJournal" selected>Stock Journal</option>
+                                                            
+                                </select>
+
+                                {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Name</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="ab" placeholder="" value="{{ j.mail_name }}" name="M_name"></div>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Address</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="ab" placeholder="" value="{{ j.mail_address }}" name="M_address"></div>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">State</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="ab" placeholder="" value="{{ j.mail_state }}" name="M_state"></div>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Country</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="ab" placeholder="" value="{{ j.mail_country }}" name="M_country"></div>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Pincode</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="ab" placeholder="" value="{{ j.mail_pincode }}" name="M_pincode"></div>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="e">Bank Details</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="avtyp" id="e" class="form-control">
-                                    <option value="No">Yes</option> 
-                                    <option value="Yes">No</option>
-                                </select> -->
-                            <!-- </div> -->
+
+
+                                {% if j.bank_details  == 'No' %}
+                                <select name="B_details" id="e" class="form-control">
+                                    <option value="No">No</option> 
+                                    <option value="Yes">Yes</option>
+                                </select>
+                                {% elif j.bank_details  == 'Yes' %}
+                                <select name="B_details" id="e" class="form-control">
+                                    <option value="Yes">Yes</option> 
+                                    <option value="No">No</option>
+                                </select>
+
+                                {% endif %}
+
+
+                            </div>
                         </div>
 
                         
-                    
-                        <div class="row container-fluid  p-0">
-                            <!-- <div class="col-sm-6 m-0 p-0"> <label for="f">Method of voucher numbering</label></div> -->
-                            <!-- <div class="col-sm-6 m-0 p-0"><select onchange="shw()"  name="meth_vou_num" id="mtdvhr" class="form-control">
+                        <hr>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="f">Tax Registration Details</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <div class="row container-fluid  p-2">
+                                    <div class="col-sm-6 m-0 p-0"> <label for="d">Pan/It Number</label></div>
+                                    <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="ab" placeholder="" value="{{ j.pan_no }}" name="Pan_no"></div>
+                                </div>
+
+                                <!-- {% if i.method_voucher_numbering == 'auto' %}
+
+                                <select onchange="shw()"  name="meth_vou_num" id="mtdvhr" class="form-control">
                                 <option value="">----select---</option>
-                                <option value="auto">Automatic</option> 
+                                <option value="auto" selected>Automatic</option> 
                                 <option value="manu">Manual</option>
                                 <option value="overd">Automatic(Manual Override)</option> 
                                 <option value="none">None</option>
                             </select>
-                            </div> -->
-                        </div>
+
+                            {% elif i.method_voucher_numbering == 'manu' %}
+
+                            <select onchange="shw()"  name="meth_vou_num" id="mtdvhr" class="form-control">
+                                <option value="">----select---</option>
+                                <option value="auto" >Automatic</option> 
+                                <option value="manu" selected>Manual</option>
+                                <option value="overd">Automatic(Manual Override)</option> 
+                                <option value="none">None</option>
+                            </select>
+
+                            {% elif i.method_voucher_numbering == 'overd' %}
+
+                            <select onchange="shw()"  name="meth_vou_num" id="mtdvhr" class="form-control">
+                                <option value="">----select---</option>
+                                <option value="auto" >Automatic</option> 
+                                <option value="manu" >Manual</option>
+                                <option value="overd" selected>Automatic(Manual Override)</option> 
+                                <option value="none">None</option>
+                            </select>
+
+                            {% elif i.method_voucher_numbering == 'none' %}
+
+                            <select onchange="shw()"  name="meth_vou_num" id="mtdvhr" class="form-control">
+                                <option value="">----select---</option>
+                                <option value="auto" >Automatic</option> 
+                                <option value="manu" >Manual</option>
+                                <option value="overd" >Automatic(Manual Override)</option> 
+                                <option value="none" selected>None</option>
+                            </select>
+
+                            {% endif %}
+
+
+
+                            </div>
+                        </div> -->
                     
 
                         
+<hr>
                         <div class="row container-fluid  p-2">
-                            <!-- <div class="col-sm-6 m-0 p-0"> <label for="g">use effective dates  for vouchers</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="g">Registration Type</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="uefftdate" id="g" class="form-control">
-                                    <option value="No">No</option>
-                                    <option value="Yes">Yes</option> 
-                                   
+                                
+
+                                {% if j.registration_type  == 'No' %}
+                                <select name="R_type" id="g" class="form-control">
+                                    <option value="Unknown">Unknown</option>
+                                    <option value="Composition">Composition</option> 
+                                    <option value="Consumer">Consumer</option> 
+                                    <option value="Regular">Regular</option> 
+                                    <option value="Unregistered">Unregistered</option> 
+
                                 </select>
-                            </div> -->
+                                {% elif j.registration_type  == 'Yes' %}
+                                <select name="R_type" id="g" class="form-control">
+                                    <option value="Unknown">Unknown</option>
+                                    <option value="Composition">Composition</option> 
+                                    <option value="Consumer">Consumer</option> 
+                                    <option value="Regular">Regular</option> 
+                                    <option value="Unregistered">Unregistered</option> 
+                                </select>
+
+                                
+                                {% endif %}
+
+
+                            </div>
+                        </div>
+
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">GSTIN/UN</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="ab" placeholder="" value="{{ j.gst_in  }}" name="Gst_in"></div>
                         </div>
                         <div class="row container-fluid  p-2">
-                            <!-- <div class="col-sm-6 m-0 p-0"> <label for="h">Allow zero valued transactions</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Alter GST <Details></Details></label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="ab" placeholder="" value="{{ j.alter }}" name="gst_alter"></div>
+                        </div>
+
+                        <!-- <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="h">Allow zero valued transactions</label></div>
                             <div class="col-sm-6 m-0 p-0">
+
+                                {% if i.allow_zero_value_trns == 'No' %}
+
                                 <select name="allow_zero_trans" id="" class="form-control">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option> 
                                    
                                 </select>
-                            </div> -->
+                                {% elif i.allow_zero_value_trns  == 'Yes' %}
+
+                                <select name="allow_zero_trans" id="" class="form-control">
+                                    <option value="Yes">Yes</option> 
+                                    <option value="No">No</option>
+
+                                </select>
+                                {% endif %}
+
+
+                            </div>
                         </div>
                         <div class="row container-fluid  p-2">
-                            <!-- <div class="col-sm-6 m-0 p-0"> <label for="i">Make voucher optional by default</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="i">Make voucher optional by default</label></div>
                             <div class="col-sm-6 m-0 p-0">
+
+                                {% if i.make_optional == 'No' %}
                                 <select name="optional" id="i" class="form-control">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option> 
                                    
                                 </select>
-                            </div> -->
+
+                                {% elif i.make_optional  == 'Yes' %}
+                                <select name="optional" id="i" class="form-control">
+                                    <option value="Yes">Yes</option> 
+                                    <option value="No">No</option>
+
+                                </select>
+                                {% endif %}
+
+
+                            </div>
                         </div>
 
                         <div class="row container-fluid  p-2">
-                            <!-- <div class="col-sm-6 m-0 p-0"> <label for="j">Allow narration in voucher</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="j">Allow narration in voucher</label></div>
                             <div class="col-sm-6 m-0 p-0">
+
+                                {% if i.allow_naration_in_voucher == 'No' %}
+
                                 <select name="allow_naration_in_vou" id="j" class="form-control">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option> 
                                    
                                 </select>
-                            </div> -->
+
+                                {% elif i.allow_naration_in_voucher  == 'Yes' %}
+
+                                <select name="allow_naration_in_vou" id="j" class="form-control">
+                                    <option value="Yes">Yes</option> 
+                                    <option value="No">No</option>
+
+                                </select>
+                                {% endif %}
+
+
+                            </div>
                         </div>
                         <div class="row container-fluid  p-2">
-                            <!-- <div class="col-sm-6 m-0 p-0"> <label for="k">Provide narration for each leadger voucher</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="k">Provide narration for each leadger voucher</label></div>
                             <div class="col-sm-6 m-0 p-0">
+
+                                {% if i.provide_naration == 'No' %}
+
                                 <select name="providenr" id="k" class="form-control">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option> 
                                    
                                 </select>
-                            </div> -->
+
+                                {% elif i.provide_naration  == 'Yes' %}
+
+                                <select name="providenr" id="k" class="form-control">
+                                    <option value="Yes">Yes</option> 
+                                    <option value="No">No</option>
+
+                                </select>
+                                {% endif %}
+
+
+
+                            </div>
                         </div>
                        
                         
 
                     </div>
                     <div class="col-sm-4 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
-                        <h5 class="text-center"><u>Mailling Detais</u></h5>
-                
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Name</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.mail_name }}" name="M_name">
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputEmail1">Address</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.mail_address }}" name="M_address">
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputEmail1">State</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.mail_state }}" name="M_state">
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputEmail1">Country</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.mail_state }}" name="M_country">
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputEmail1">Pincode</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.mail_pincode }}" name="M_pincode">
-                          </div>
-                    </div>
-                
-                    <div class="col-sm-3 m-0 p-4">
-                        <h5 class="text-center"><u>Banking Details</u></h5>
-
-                            {% if j.bank_details  == 'No' %}
+                        <h5 class="text-center">Printing</h5>
                         <div class="row container-fluid  p-2">
-                            <div class="col-sm-6 m-0 p-0"> <label><h6>Provide bank details</h6></label></div>
-                            <select name="B_details" id="aa" class=" form-control">
-                            <option value="1">NO</option>
-                            <option value="2">YES</option>
-                          </select>
-                          {% elif j.bank_details  == 'Yes' %}
-                          <select name="B_details" id="aa" class=" form-control">
-                            <option value="1">NO</option>
-                            <option value="2">YES</option>
-                          </select>
-                          {% endif %}
-                      </div><br><br>
-                      <h5><center><u>Tax registration Details</u></center></h5><br>
-                      <div class="form-group">
-                        <label>PAN/IT Number</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.pan_no }}"name="Pan_no">
-                      </div>
-                      <div class="row container-fluid  p-0">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Registeration Type</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            {% if j. registration_type == 'No' %}
+                            <div class="col-sm-6 m-0 p-0"> <label for="l">Print voucher after saving</label></div>
+                            <div class="col-sm-6 m-0 p-0">
 
-                        <select name="R_type" id="aa" class=" form-control">
-                            <option value="1">Unknown</option>
-                            <option value="2">Composition</option>
-                            <option value="1">Consumer</option>
-                            <option value="1">Regular</option>
-                            <option value="1">Unregistered</option>
-                          </select>
-                          {% elif j.regstration_type  == 'Yes' %}
-                          <select name="R_type" id="aa" class=" form-control">
-                            <option value="1">Unknown</option>
-                            <option value="2">Composition</option>
-                            <option value="1">Consumer</option>
-                            <option value="1">Regular</option>
-                            <option value="1">Unregistered</option>
-                          </select>
+                                {% if i.print_voucher == 'No' %}
 
-                      </div>
-                      
+                                <select name="print" id="l" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
+                                   
+                                </select>
+                                {% elif i.print_voucher  == 'Yes' %}
+
+                                <select name="print" id="l" class="form-control">
+                                    <option value="Yes">Yes</option> 
+                                    <option value="No">No</option>
+                                </select>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        
                     </div>
-                    <div class="form-group">
-                        <label>GSTIN/UIN</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.gst_in }}" name="Gst_in">
-                      </div>
-                      <div class="form-group">
-                        <label>Alter GST Details</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" aria-describedby="emailHelp" value="{{ j.alter }}" name="gst_alter">
-                      </div>
+                    <div class="col-sm-3 m-0 p-4">
+                        <h5 class="text-center">Name of class</h5> -->
+                    </div>
                 </div>
+                    </div>
                 </div>
-                <div class="enter w-100 py-4"><button class="btn btn-info w-25">CREATE</button></div>   
+                <div class="enter w-100 py-4"><button class="btn btn-info w-25">ALTER</button></div>   
                 
             </form>
-        </div>  
+        </div>
+        <script>
+
+            
+        
+
+
+            function hi(){
+                var status = document.getElementById("aa");
+                var a = status.value
+                console.log(a);
+                if( a == "Attendence" )
+                {
+                    document.getElementById("ab").value = "Attd";
+                    // document.getElementById('dd').style.display = "block";
+    
+                }
+                else if( a == "contra" ){
+                    document.getElementById("ab").value = "ctra";
+    
+                }
+                else if( a == "CreditNote" ){
+                    document.getElementById("ab").value = "C/Note";
+    
+                }
+                else if( a == "DebitNote" ){
+                    document.getElementById("ab").value = "D/Note";
+    
+                }
+                else if( a == "DeliveryNote" ){
+                    document.getElementById("ab").value = "Dely Note";
+    
+                }
+                else if( a == "JobWorkinOrder" ){
+                    document.getElementById("ab").value = "Job Wrk in Ordr";
+    
+                }
+                else if( a == "JobWorkOutOrder" ){
+                    document.getElementById("ab").value = "Job Wrk out Ordr";
+    
+                }
+                else if( a == "Journal" ){
+                    document.getElementById("ab").value = "Jrnl";
+    
+                }
+                else if( a == "MaterialIn" ){
+                    document.getElementById("ab").value = "Mat in";
+    
+                }
+                else if( a == "MaterialOut" ){
+                    document.getElementById("ab").value = "Mat out";
+    
+                }
+                else if( a == "Memorandum" ){
+                    document.getElementById("ab").value = "Memo";
+    
+                }
+                else if( a == "Payment" ){
+                    document.getElementById("ab").value = "Pymt";
+    
+                }
+                else if( a == "Payroll" ){
+                    document.getElementById("ab").value = "Pyrl";
+    
+                }
+                else if( a == "PhysicalStock" ){
+                    document.getElementById("ab").value = "Phy stk";
+    
+                }
+                else if( a == "Purchase" ){
+                    document.getElementById("ab").value = "Purc";
+    
+                }
+                else if( a == "PurchaseOrder" ){
+                    document.getElementById("ab").value = "Pruc Order";
+    
+                }
+                else if( a == "Receipt" ){
+                    document.getElementById("ab").value = "Rcpt";
+    
+                }
+                else if( a == "ReceiptNote" ){
+                    document.getElementById("ab").value = "Rcpt Note";
+    
+                }
+                else if( a == "RejectionIn" ){
+                    document.getElementById("ab").value = "Rej In";
+    
+                }
+                else if( a == "RejectionOut" ){
+                    document.getElementById("ab").value = "Rej Out ";
+    
+                }
+                else if( a == "ReversingJournal" ){
+                    document.getElementById("ab").value = "Rev jrnl";
+    
+                }
+                else if( a == "Sales" ){
+                    document.getElementById("ab").value = "Sale";
+    
+                }
+                else if( a == "SalesOrder" ){
+                    document.getElementById("ab").value = "Sales Ordr";
+    
+                }
+                else if( a == "StockJournal" ){
+                    document.getElementById("ab").value = "Stk jrnl";
+    
+                }
+    
+            }
+        </script>
+        
     {% endblock %}
