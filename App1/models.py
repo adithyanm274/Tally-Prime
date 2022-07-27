@@ -108,5 +108,87 @@ class LedgerModels(models.Model):
     def __str__(self):
         return self.name    
 
+##################################################
+
+class LedgerModels(models.Model):
+    ledger_name = models.CharField(max_length=225)
+    alias = models.CharField(max_length=225)
+    under = models.CharField(max_length=225)
+    mail_name = models.CharField(max_length=225)
+    mail_address =  models.CharField(max_length=225)
+    mail_state = models.CharField(max_length=225)
+    mail_country = models.CharField(max_length=225,blank=True)
+    mail_pincode = models.CharField(max_length=225,default="Null",blank=True)
+    bank_details =  models.CharField(max_length=225,default="Null")
+    pan_no =  models.CharField(max_length=225)
+    registration_type =  models.CharField(max_length=225)
+    gst_in =  models.CharField(max_length=225)
+    alter_gst =  models.CharField(max_length=225)
+  
+    def __str__(self):
+        return self.name  
+
+
+class LedgerModels(models.Model):
+    ledger_name = models.CharField(max_length=225)
+    alias = models.CharField(max_length=225)
+    under = models.CharField(max_length=225)
+    mail_name = models.CharField(max_length=225)
+    mail_address =  models.CharField(max_length=225)
+    mail_state = models.CharField(max_length=225)
+    mail_country = models.CharField(max_length=225,blank=True)
+    mail_pincode = models.CharField(max_length=225,default="Null",blank=True)
+    bank_details =  models.CharField(max_length=225,default="Null")
+    pan_no =  models.CharField(max_length=225)
+    registration_type =  models.CharField(max_length=225)
+    gst_in =  models.CharField(max_length=225)
+    alter_gst =  models.CharField(max_length=225)
+  
+    def __str__(self):
+        return self.name  
+
+class LedgerModels(models.Model):
+    ledger_name = models.CharField(max_length=225)
+    alias = models.CharField(max_length=225)
+    under = models.CharField(max_length=225)
+    mail_name = models.CharField(max_length=225)
+    mail_address =  models.CharField(max_length=225)
+    mail_state = models.CharField(max_length=225)
+    mail_country = models.CharField(max_length=225,blank=True)
+    mail_pincode = models.CharField(max_length=225,default="Null",blank=True)
+    bank_details =  models.CharField(max_length=225,default="Null")
+    pan_no =  models.CharField(max_length=225)
+    registration_type =  models.CharField(max_length=225)
+    gst_in =  models.CharField(max_length=225)
+    alter_gst =  models.CharField(max_length=225)
+  
+    def __str__(self):
+        return self.name  
+
+class LedgerModels(models.Model):
+    ledger_name = models.CharField(max_length=225)
+    alias = models.CharField(max_length=225)
+    under = models.CharField(max_length=225)
+    mail_name = models.CharField(max_length=225)
+    mail_address =  models.CharField(max_length=225)
+    mail_state = models.CharField(max_length=225)
+    mail_country = models.CharField(max_length=225,blank=True)
+    mail_pincode = models.CharField(max_length=225,default="Null",blank=True)
+    bank_details =  models.CharField(max_length=225,default="Null")
+    pan_no =  models.CharField(max_length=225)
+    registration_type =  models.CharField(max_length=225)
+    gst_in =  models.CharField(max_length=225)
+    alter_gst =  models.CharField(max_length=225)
+  
+    def __str__(self):
+        return self.name                          
+
+
+
+
+
+
+
+
 
        

@@ -429,7 +429,7 @@ def create_ledger(request):
 
 def update_ledger(request,pk):
     led=LedgerModels.objects.get(id=pk)
-    return render(request,'update_ledger.html',{'j':led})
+    return render(request,'update_ledger1.html',{'j':led})
        
 
 def save_ledger(request,pk):
@@ -452,8 +452,176 @@ def save_ledger(request,pk):
         
         led.save()
         return redirect('ledger')
-    return render(request,'update_ledger.html')
+    return render(request,'update_ledger1.html')
 
+###########################################################
+def ledger(request):
+    led=VoucherModels.objects.all()
+    context={'vch':led,}
+    return render(request, 'ledger.html',context)
+
+def ledgerpage(request):
+    return render(request, 'load_create_ledgertype.html')
+
+
+
+def load_create_ledgertyp(request):
+    return render(request,'load_create_ledgertype.html')
+
+def create_ledger(request):
+    if request.method == 'POST':
+        Lname = request.POST['name']
+        alias = request.POST['alias']
+        under = request.POST['Ltype']
+        m_name = request.POST['M_name']
+        m_address = request.POST['M_address']  
+        m_state = request.POST['M_state']
+        m_country = request.POST['M_country']
+        m_pincode = request.POST['M_pincode']
+        b_details = request.POST['B_details']  
+        pan_number = request.POST['Pan_no']  
+        r_type = request.POST['R_type']  
+        gstin = request.POST['GST_in'] 
+        gst_alter = request.POST['GST_alter']  
+
+        if LedgerModels.objects.filter(ledger_name=Lname).exists():
+                messages.info(request,'This Name is already taken...!')
+                return render(request, 'load_create_ledgertype.html')
+        
+        ldr = LedgerModels(
+
+            ledger_name=Lname,
+            alias=alias,
+            under=under,
+            mail_name=m_name,
+            mail_address=m_address,
+            mail_state=m_state,
+            mail_country=m_country,
+            mail_pincode = m_pincode,
+            bank_details =b_details,
+            pan_no=pan_number,
+            registration_type=r_type,
+            gst_in=gstin,
+            alter_gst=gst_alter,
+
+        )
+        ldr.save()
+        messages.info(request,'LEDGER CREATED SUCCESSFULLY')
+        return redirect('ledger')
+
+    return render(request, 'ledger.html')
+
+
+def update_ledger(request,pk):
+    led=LedgerModels.objects.get(id=pk)
+    return render(request,'update_ledger1.html',{'j':led})
+       
+
+def save_ledger(request,pk):
+    if request.method=='POST':
+        led =LedgerModels.objects.get(id=pk)
+        led.ledger_name = request.POST.get('name')
+        led.alias = request.POST.get('alias')
+        led.under = request.POST.get('Ltype')
+        led.mail_name = request.POST.get('M_name')
+        led.mail_address = request.POST.get('M_address')
+        led.mail_state = request.POST.get('M_state')
+        led.mail_country = request.POST.get('M_country')
+        led.mail_pincode = request.POST.get('M_pincode')
+        led.bank_details = request.POST.get('B_details')
+        led.pan_no = request.POST.get('Pan_no')
+        led.registration_type = request.POST.get('R_type')
+        led.gst_in = request.POST.get('Gst_in')
+        led.alter = request.POST.get('gst_alter')
+
+        
+        led.save()
+        return redirect('ledger')
+    return render(request,'update_ledger1.html')
+
+def ledger(request):
+    led=VoucherModels.objects.all()
+    context={'vch':led,}
+    return render(request, 'ledger.html',context)
+
+def ledgerpage(request):
+    return render(request, 'load_create_ledgertype.html')
+
+
+
+def load_create_ledgertyp(request):
+    return render(request,'load_create_ledgertype.html')
+
+def create_ledger(request):
+    if request.method == 'POST':
+        Lname = request.POST['name']
+        alias = request.POST['alias']
+        under = request.POST['Ltype']
+        m_name = request.POST['M_name']
+        m_address = request.POST['M_address']  
+        m_state = request.POST['M_state']
+        m_country = request.POST['M_country']
+        m_pincode = request.POST['M_pincode']
+        b_details = request.POST['B_details']  
+        pan_number = request.POST['Pan_no']  
+        r_type = request.POST['R_type']  
+        gstin = request.POST['GST_in'] 
+        gst_alter = request.POST['GST_alter']  
+
+        if LedgerModels.objects.filter(ledger_name=Lname).exists():
+                messages.info(request,'This Name is already taken...!')
+                return render(request, 'load_create_ledgertype.html')
+        
+        ldr = LedgerModels(
+
+            ledger_name=Lname,
+            alias=alias,
+            under=under,
+            mail_name=m_name,
+            mail_address=m_address,
+            mail_state=m_state,
+            mail_country=m_country,
+            mail_pincode = m_pincode,
+            bank_details =b_details,
+            pan_no=pan_number,
+            registration_type=r_type,
+            gst_in=gstin,
+            alter_gst=gst_alter,
+
+        )
+        ldr.save()
+        messages.info(request,'LEDGER CREATED SUCCESSFULLY')
+        return redirect('ledger')
+
+    return render(request, 'ledger.html')
+
+
+def update_ledger(request,pk):
+    led=LedgerModels.objects.get(id=pk)
+    return render(request,'update_ledger1.html',{'j':led})
+       
+
+def save_ledger(request,pk):
+    if request.method=='POST':
+        led =LedgerModels.objects.get(id=pk)
+        led.ledger_name = request.POST.get('name')
+        led.alias = request.POST.get('alias')
+        led.under = request.POST.get('Ltype')
+        led.mail_name = request.POST.get('M_name')
+        led.mail_address = request.POST.get('M_address')
+        led.mail_state = request.POST.get('M_state')
+        led.mail_country = request.POST.get('M_country')
+        led.mail_pincode = request.POST.get('M_pincode')
+        led.bank_details = request.POST.get('B_details')
+        led.pan_no = request.POST.get('Pan_no')
+        led.registration_type = request.POST.get('R_type')
+        led.gst_in = request.POST.get('Gst_in')
+        led.alter = request.POST.get('gst_alter')
+
+        
+        led.save()
+        return redirect('ledger')
+    return render(request,'update_ledger1.html')
 
 
 
